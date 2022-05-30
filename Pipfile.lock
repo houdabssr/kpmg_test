@@ -1,7 +1,7 @@
 {
     "_meta": {
         "hash": {
-            "sha256": "8d545316aa026dfc8c84989ed8906d33d47f1361ff0deb01c6ec0c6827a377c9"
+            "sha256": "4c4cddcf2d2852b4e283966f65bad928dc2d2cde4c53cf2a5315681ade5fcab9"
         },
         "pipfile-spec": 6,
         "requires": {
@@ -61,6 +61,14 @@
             "index": "pypi",
             "version": "==4.0.4"
         },
+        "django-cors-headers": {
+            "hashes": [
+                "sha256:39d1d5acb872c1860ecfd88b8572bfbb3a1f201b5685ede951d71fc57c7dfae5",
+                "sha256:5f07e2ff8a95c887698e748588a4a0b2ad0ad1b5a292e2d33132f1253e2a97cb"
+            ],
+            "index": "pypi",
+            "version": "==3.12.0"
+        },
         "django-heroku": {
             "hashes": [
                 "sha256:2bc690aab89eedbe01311752320a9a12e7548e3b0ed102681acc5736a41a4762",
@@ -101,6 +109,13 @@
             ],
             "markers": "sys_platform == 'win32'",
             "version": "==2022.1"
+        },
+        "validate-email": {
+            "hashes": [
+                "sha256:784719dc5f780be319cdd185dc85dd93afebdb6ebb943811bc4c7c5f9c72aeaf"
+            ],
+            "index": "pypi",
+            "version": "==1.3"
         },
         "waitress": {
             "hashes": [

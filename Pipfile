@@ -8,6 +8,8 @@ django = "*"
 psycopg2 = "*"
 django-heroku = "*"
 waitress = "*"
+validate-email = "*"
+django-cors-headers = "*"
 
 [dev-packages]
 
