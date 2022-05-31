@@ -57,12 +57,29 @@ class RegistrationView(View):
         email = request.POST['email']
         password = request.POST['password']
 
+        # DICT contient ce qui a été envoyé precedemment
         context = {
             'fieldValues': request.POST
         }
+        if not User.objects.filter(username=username).exists():
+            if not User.objects.filter(email=email).exists():
+                if len(password) < 4:
+                    messages.error(request, 'Mot de passe trés court')
+                    return render(request, 'authentication/register.html', context)
+
+                user = User.objects.create_user(username=username, email=email)
+                user.set_password(password)
+                user.is_active = False
+                user.save()
+                 
+
+
+                messages.success(request, 'Account successfully created')
+                return render(request, 'authentication/register.html')
+
 
         
-        return render(request, 'authentication/login.html')
+        return render(request, 'authentication/register.html')
 
 
 class LogoutView(View):
