@@ -1,7 +1,75 @@
 
-{% extends 'base.html' %}
+        {% extends 'base.html' %} 
 
-{% block content %}
-<h2>Ajouter un ticket</h2>
+     
+        {% block content %}
 
-{% endblock %}
+        
+       <!-- Pour l'introduire dans la meme page que tickets -->
+       
+       <div class="container mt-4">
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+            <li class="breadcrumb-item">
+                <a href="{% url 'tickets' %}">tickets</a>
+            </li>
+            <li class="breadcrumb-item active" aria-current="page">My tickets</li>
+            </ol>
+        </nav>
+
+        <!-- values.var sert de sauvgarder les var -->
+
+        <div class="card">
+            <div class="card-body">
+            <form action="{% url 'add-tickets' %}" method="post">
+                    {% include 'partials/_messages.html'%} {% csrf_token %}
+                    <div class="form-group">
+                        <label for="">Intitulé du ticket</label>
+                        <input
+                        type="text"
+                        class="form-control form-control-sm"
+                        name="intitulé"
+                        value="{{values.intitulé}}" 
+                        />
+                    </div>  
+
+                    <div class="form-group">
+                    <label for="">Description</label>
+                    <input
+                        type="text"
+                        class="form-control form-control-sm"
+                        name="description"
+                        value="{{values.description}}"  
+                    />
+                    </div>     
+                    <div class="form-group">
+                        <label for="">Info / Notes</label>
+                        <input
+                        type="text"
+                        class="form-control form-control-sm"
+                        name="info"
+                        value="{{values.info}}"
+                        />
+                    </div>  
+                    <div class="form-group">
+                        <label for="">Deadline</label>
+                        <input
+                        type="date"
+                        class="form-control form-control-sm"
+                        name="ticket_date"
+                        />
+                    </div>
+                </div>
+                <input
+                type="submit"
+                value="Submit"
+                class="btn btn-primary btn-primary-sm"
+            />
+        </form>
+        
+    </div>       
+            
+    </div>
+</div>
+
+    {% endblock %}

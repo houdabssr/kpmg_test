@@ -56,34 +56,57 @@ class RegistrationView(View):
         username = request.POST['username']
         email = request.POST['email']
         password = request.POST['password']
+        usertype = request.POST['usertype']
 
-        # DICT contient ce qui a été envoyé precedemment
         context = {
             'fieldValues': request.POST
         }
+
         if not User.objects.filter(username=username).exists():
             if not User.objects.filter(email=email).exists():
                 if len(password) < 4:
-                    messages.error(request, 'Mot de passe trés court')
+                    messages.error(request, 'Password too short')
                     return render(request, 'authentication/register.html', context)
 
                 user = User.objects.create_user(username=username, email=email)
                 user.set_password(password)
                 user.is_active = False
                 user.save()
-                 
-
-
-                messages.success(request, 'Account successfully created')
+                  
                 return render(request, 'authentication/register.html')
 
-
-        
         return render(request, 'authentication/register.html')
 
 
+class LoginView(View):
+    def get(self, request):
+        return render(request, 'authentication/login.html')
+
+    def post(self, request):
+        username = request.POST['username']
+        password = request.POST['password']
+
+        if username and password:
+            user = auth.authenticate(username=username, password=password)
+
+            if user:
+                 
+                    auth.login(request, user)
+                    messages.success(request, 'Welcome, ' +
+                                     user.username+' you are now logged in')
+                    return redirect('tickets')
+                
+             
+            return render(request, 'authentication/login.html')
+
+        messages.error(
+            request, 'Please fill all fields')
+        return render(request, 'authentication/login.html')
+        
 class LogoutView(View):
     def post(self, request):
         auth.logout(request)
         messages.success(request, 'You have been logged out')
         return redirect('login')
+
+

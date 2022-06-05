@@ -1,0 +1,77 @@
+{% extends 'base.html' %} {% block content %}
+
+<div class="container mt-4">
+  <div class="row">
+    <div class="col-md-10">
+      <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item">
+            <a href="{% url 'tickets'%}">Tickets</a>
+          </li>
+          <li class="breadcrumb-item active" aria-current="page">
+            Edit ticket
+          </li>
+        </ol>
+      </nav>
+    </div>
+
+    <div class="col-md-2">
+      <a
+        href="{% url 'tickets-delete' tickets.id %}"
+        class="btn btn-danger btn-sm"
+        >Delete</a
+      >
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-body">
+      <form action="{% url 'tickets-edit' tickets.id %}" method="post">
+        {% include 'partials/_messages.html'%} {% csrf_token %}
+        <div class="form-group">
+          <label for="">intitulé</label>
+          <input
+            type="text"
+            class="form-control form-control-sm"
+            name="intitulé"
+            value="{{values.intitulé}}"
+          />
+        </div>
+        <div class="form-group">
+          <label for="">Description</label>
+          <input
+            type="text"
+            class="form-control form-control-sm"
+            name="description"
+            value="{{values.description}}"
+          />
+        </div>
+        <div class="form-group">
+          <label for="">info</label>
+          <select class="form-control" name="info">
+            <option selected name="info" value="{{values.info}}"
+              >{{values.info}}</option
+            > 
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="">Date of ticket</label>
+          <input
+            type="date"
+            value="{{values.date |date:'Y-m-d' }}"
+            class="form-control form-control-sm"
+            name="ticket_date"
+          />
+        </div>
+
+        <input
+          type="submit"
+          value="Save"
+          class="btn btn-primary btn-primary-sm"
+        />
+      </form>
+    </div>
+  </div>
+</div>
+
+{% endblock %}

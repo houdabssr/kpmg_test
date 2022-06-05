@@ -26,11 +26,20 @@
     <span class="navbar-toggler-icon"></span>
   </button>
   <input class="form-control form-control-dark w-100 rounded-0 border-0" type="text" placeholder="Search" aria-label="Search">
-  <div class="navbar-nav">
-    <div class="nav-item text-nowrap">
-      <a class="nav-link px-3" href="#">Sign out</a>
-    </div>
-  </div>
+  <ul
+  class="navbar-nav px-3">
+     
+    <li class="nav-item text-nowrap mt-3 ml-2">
+      <form action="{% url  'logout' %}" method="POST">
+        {% csrf_token %}
+        <input
+          class="text text-capitalize"
+          type="submit"
+          value="Sign out"
+        />
+      </form>
+    </li>
+   </ul>
 </header>
 
 <div class="container-fluid">
@@ -53,3 +62,4 @@
       <script> src="{% static 'js/main.js' %}"</script>
   </body>
 </html>
+

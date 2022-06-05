@@ -18,7 +18,12 @@ from django.urls import path,include
 from . import views
 
 urlpatterns = [
-    path('', views.index,name='tickets'),
+    path('', views.index,name="tickets"),
     path('add-tickets',views.add_tickets,name='add-tickets'),
+
+    path('edit-tickets\<int:id>',views.tickets_edit,name='tickets-edit'),
+
+    path('tickets-delete\<int:id>',views.delete_tickets,name='tickets-delete'),
+
 
 ]

@@ -12,6 +12,8 @@ https://docs.djangoproject.com/en/4.0/ref/settings/
 import os
 from pathlib import Path
 import django_heroku
+from django.contrib import messages
+
  
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -39,7 +41,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'tickets'
+    'tickets',
+     
    
 ]
 
@@ -86,6 +89,7 @@ DATABASES = {
         'USER':'postgres',
         'PASSWORD':'admin',
         'HOST':'localhost'
+        
     }
 }
 
@@ -136,4 +140,8 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 django_heroku.settings(locals())
 
 CSRF_TRUSTED_ORIGINS = ["https://*", "http://*"]
+
+MESSAGE_TAGS = {
+    messages.ERROR: 'danger'
+}
 
