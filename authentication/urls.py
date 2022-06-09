@@ -10,7 +10,7 @@ urlpatterns =[path('register',csrf_exempt(RegistrationView.as_view()),name="regi
          name="validate-username"),
        path('validate-email', csrf_exempt(EmailValidationView.as_view()),
          name='validate_email'),
-         path('login', LoginView.as_view(), name="login"),
+         path('login', csrf_exempt(LoginView.as_view()), name="login"),
           path('logout', LogoutView.as_view(), name="logout"),
 
 ]
