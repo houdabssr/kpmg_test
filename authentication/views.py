@@ -56,7 +56,7 @@ class RegistrationView(View):
         username = request.POST['username']
         email = request.POST['email']
         password = request.POST['password']
-        usertype = request.POST['usertype']
+        #usertype = request.POST['usertype']
 
         context = {
             'fieldValues': request.POST
@@ -70,13 +70,12 @@ class RegistrationView(View):
 
                 user = User.objects.create_user(username=username, email=email)
                 user.set_password(password)
-                user.is_active = False
+                #user.is_active = False
                 user.save()
                   
-                return render(request, 'authentication/register.html')
+                return render(request, 'authentication/login.html')
 
-        return render(request, 'authentication/register.html')
-
+ 
 
 class LoginView(View):
     def get(self, request):

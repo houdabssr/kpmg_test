@@ -78,7 +78,7 @@ def tickets_edit(request,id):
             messages.error(request, 'intitulé is required')
             return render(request, 'tickets/edit-tickets.html', context)
         description = request.POST['description']
-        date = request.POST['tickets_date']
+        date = request.POST['ticket_date']
         intitulé = request.POST['intitulé']
         info = request.POST['info']
 
